@@ -1,0 +1,131 @@
+@import "../../main.less";
+
+.ls-banner-item {
+  width: 100%;
+  background: #fff;
+}
+
+.ls-nav-content {
+  width: 100%;
+}
+
+.ls-nav {
+  display: flex;
+  padding: 3rem 0;
+  height: 10rem;
+  width: 100%;
+  line-height: 4rem;
+  .ls-nav-item {
+    font-size: 1.2rem;
+    color: #fff;
+    flex: 1;
+    span {
+      position: relative;
+      text-align: center;
+      padding-bottom: .2rem;
+      &:after {
+        position: absolute;
+        bottom: -.3rem;
+        left: 0;
+        right: 0;
+        content: '';
+        display: inline-block;
+        height: 3px;
+        border-radius: 2px;
+        width: 100%;
+        transform: rotateY(90deg);
+        background: #ccc;
+        transition: all ease .4s;
+      }
+      &.active {
+        height: 2rem;
+        &:after {
+          transform: rotateY(0deg);
+          transition: all ease .8s;
+        }
+        // border-bottom: 1px solid #fff;
+      }
+    }
+  }
+}
+
+.ls-menu {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  .ls-menu-item {
+    position: relative;
+    display: block;
+    .size(calc((99.6vw - @bt0*2)/3));
+    overflow: hidden;
+    img {
+      position: relative;
+      left: 0;
+      top: 0;
+      .size;
+      transition: all ease .2s;
+    }
+    .ls-menu-mask {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem;
+      color: #ccc;
+      position: absolute;
+      transform: rotate(-45deg);
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(0, 0, 0, 0);
+      transition: all ease .4s;
+      opacity: 0;
+    }
+    &.active {
+      img {
+        left: -10%;
+        top: -10%;
+        .size(120%);
+        transition: all ease .8s;
+      }
+      .ls-menu-mask {
+        opacity: 1;
+        background: rgba(0, 0, 0, .4);
+        background-image: radial-gradient(rgba(0, 0, 0, .8) 10%, transparent 0),
+        radial-gradient(rgba(0, 0, 0, .1) 10%, transparent 0);
+        background-size: 5px 5px, 5px 5px;
+        transition: all ease .8s;
+      }
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    .ls-menu-item { .size(calc((99.6vw - @bt1024*2)/3)); }
+  }
+  @media screen and (min-width: 1440px) {
+    .ls-menu-item { .size(calc((99.6vw - @bt1440*2)/3)); }
+  }
+  @media screen and (min-width: 1680px) {
+    .ls-menu-item { .size(calc((99.6vw - @bt1680*2)/3)); }
+  }
+  @media screen and (min-width: 1920px) {
+    .ls-menu-item { .size(calc((99.6vw - @bt1920*2)/3)); }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

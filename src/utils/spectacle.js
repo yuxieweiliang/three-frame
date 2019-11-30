@@ -1,7 +1,7 @@
 /**
  * Created by K on 2019/11/4.
  */
-import { TransformControls } from '../../jsm/controls/TransformControls.js';
+import { TransformControls } from '../../static/jsm/controls/TransformControls.js';
 
 export default class Spectacle {
   constructor(option) {

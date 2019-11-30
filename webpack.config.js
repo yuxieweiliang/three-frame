@@ -10,46 +10,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const pages = [{
-  title: '首页',
-  name: 'index',
-}, {
-  title: '素材分类',
-  name: 'material',
-}, {
-  title: '素材列表',
-  name: 'material-list',
-}, {
-  title: '素材详情',
-  name: 'material-detail',
-}, {
-  title: '案例中心',
-  name: 'example-case',
-}, {
-  title: '案例列表',
-  name: 'example-list',
-}, {
-  title: '案例详情',
-  name: 'example-detail',
-}, {
-  title: '产品矩阵',
-  name: 'product-matrix',
-}, {
-  title: '各地展厅',
-  name: 'display-everywhere',
-}, {
-  title: '展厅详情',
-  name: 'display-everywhere-detail',
-}, {
-  title: '企业介绍',
-  name: 'enterprise',
-}]
-
-const outPath = '_dist'
+const outPath = 'dist'
 
 const config = {
   entry: {
-    // index: path.resolve(__dirname, './src/page/index'),
+    index: path.resolve(__dirname, './src/page/index'),
     // material: path.resolve(__dirname, './src/page/material'),
     vendors: './node_modules/vue'
   },
@@ -103,8 +68,13 @@ const config = {
 
     new VueLoaderPlugin(),
 
-    new MiniCssExtractPlugin({
-      filename: "[name].css"                     // 提取出来的css文件路径以及命名
+    new MiniCssExtractPlugin({ filename: "[name].css" }),
+
+    new HtmlWebpackPlugin({
+      title: 'title',
+      filename: 'index.html',
+      inject: 'body',
+      template: path.resolve(__dirname, './src/index.html')
     }),
 
     new CopyWebpackPlugin([
@@ -128,20 +98,6 @@ config.optimization = {
     }
   }
 }
-
-pages.forEach(function ({ name, title }) {
-
-  config.entry[name] = path.resolve(__dirname, `./src/page/${name}`)
-
-  config.plugins.push(new HtmlWebpackPlugin({
-    title,
-    filename: name + '.html',
-    inject: 'body',
-    chunks: ['vendors', name],
-    template: path.resolve(__dirname, './src/index.html')
-  }))
-
-})
 
 module.exports = function (env, argv) {
 
